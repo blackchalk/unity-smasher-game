@@ -52,7 +52,9 @@ public class TouchControls : MonoBehaviour {
                 tapping = false;
                 singleTap = true;
                 Debug.Log("SingleTap");
+
             }
+
 
         }
     }
@@ -62,9 +64,8 @@ public class TouchControls : MonoBehaviour {
             
             if (Input.GetMouseButtonDown(0))
             {
-                if (didHit == 0)
+                if (singleTap && !gameObject.name.Contains("ggg"))
                 {
-                    didHit = 1;
 
                     if (gameObject.tag == "Right")
                     {
@@ -87,6 +88,30 @@ public class TouchControls : MonoBehaviour {
                         StartCoroutine(doTransitionOfSprite());
                     }
                 }
+            if (doubleTap && gameObject.name.Contains("ggg")) {
+                Debug.Log("catch");
+
+                if (gameObject.tag == "Right")
+                {
+                    mscTrigger.PlaySingle(sfxClip[0]);
+                    ScoreManager.AddPoints(pointsToAdd);
+                    this.gameObject.GetComponent<Animator>().enabled = false;
+                    this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+                    Counter.AddCounter(counterToAdd);
+                    StartCoroutine(doTransitionOfSprite());
+
+
+                }
+                else if (gameObject.tag == "Wrong")
+                {
+                    mscTrigger.PlaySingle(sfxClip[1]);
+                    ScoreManager.AddPoints(pointsToAdd);
+                    this.gameObject.GetComponent<Animator>().enabled = false;
+                    this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+                    HeartAndStars.MinusHeartAndStars(toBeDeducted);
+                    StartCoroutine(doTransitionOfSprite()); 
+                }
+            }
             
             }
         
