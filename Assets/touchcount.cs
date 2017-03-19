@@ -12,14 +12,24 @@ public class touchcount : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.touchCount > 0 || Input.GetMouseButton(0)) {
-            GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
-            foreach (GameObject go in allObjects)
-                if (go.activeInHierarchy)
-                {
-                    Destroy(go);
-                }
-            SceneManager.LoadScene (2);
-		}
+		//if (Input.touchCount > 0 || Input.GetMouseButton(0)) {
+  //          GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+  //          foreach (GameObject go in allObjects)
+  //              if (go.activeInHierarchy)
+  //              {
+  //                  Destroy(go);
+  //              }
+  //          SceneManager.LoadScene (2);
+		//}
 	}
+    public void clickbutton(string scene2load)
+    {
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        foreach (GameObject go in allObjects)
+            if (go.activeInHierarchy)
+            {
+                Destroy(go);
+            }
+        SceneManager.LoadScene(scene2load);
+    }
 }

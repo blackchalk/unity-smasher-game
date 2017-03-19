@@ -43,7 +43,7 @@ public class MainChangeScenes : MonoBehaviour {
 
 
 	public void PlayButton(){
-		SceneManager.LoadScene ("Map");
+		SceneManager.LoadScene ("Map 1");
 	}
 
 	public void Achievement(){

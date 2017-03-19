@@ -18,6 +18,7 @@ public class Pause : MonoBehaviour {
 	public GameObject counterSliderGO;
 
 
+
 	public void Paused(){
 		lvl1pregame.SetActive (false);
 		PauseButton.SetActive (false);

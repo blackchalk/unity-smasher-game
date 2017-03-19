@@ -37,6 +37,7 @@ public class WhackerPreGame : MonoBehaviour {
 		LevelSuccess.SetActive (true);
 		LevelSuccess.GetComponent<Animator> ().enabled = false;
 		Slider.SetActive (false);
+        Time.timeScale = 1.0f;
 	}
 	void Update(){
 		if (lvl4scene2.gameEnd == true) {

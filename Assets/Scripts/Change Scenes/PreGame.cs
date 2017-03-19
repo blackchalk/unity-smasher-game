@@ -38,9 +38,10 @@ public class PreGame : MonoBehaviour {
 		Smash.SetActive (false);
 		Em.SetActive (false);
 		NotesFrame.SetActive (false);
-		Slider.SetActive (false);
+		Slider.SetActive (true);
 		LevelSuccess.SetActive (true);
 		LevelSuccess.GetComponent<Animator> ().enabled = false;
+        Time.timeScale = 1.0f;
 	}
 
 	public void Play(){
@@ -53,7 +54,7 @@ public class PreGame : MonoBehaviour {
 		GamePanel.SetActive (false);
 		Smash.SetActive (true);
 		Em.SetActive (true);
-		Slider.SetActive (true);
+		Slider.SetActive (true);    
 		LevelSuccess.SetActive (true);
 		LevelSuccess.GetComponent<Animator> ().enabled = false;
 	}

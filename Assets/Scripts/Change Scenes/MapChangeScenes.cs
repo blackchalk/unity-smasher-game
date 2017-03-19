@@ -15,10 +15,11 @@ public class MapChangeScenes : MonoBehaviour {
 		achievement3 = 24;
 //		PlayerPrefs.SetInt ("totalStars", 18);
 		starCount = PlayerPrefs.GetInt ("totalStars");
-		handleSpriteImageStarsCount ();
+		//handleSpriteImageStarsCount ();
 	}
 
 	public void Level1Button(string x){
+        Debug.Log("hit");
 		SceneManager.LoadScene (x);
 	}
 

@@ -103,7 +103,8 @@ public class Level4Scene2 : MonoBehaviour {
 			UpperFrame.GetComponent<Image> ().sprite = sprQuestions [c];
 		} 
 		if (gameEnd == true) {
-			//do nothing
+            Debug.Log("finish");
+			//do nothing        
 		}
 	}
 
