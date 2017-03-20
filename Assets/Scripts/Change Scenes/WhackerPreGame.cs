@@ -22,9 +22,13 @@ public class WhackerPreGame : MonoBehaviour {
 	public GameObject Questions;
 	public Level4Scene2 lvl4scene2;
     public float secondsToWait = 5.0f;
+    public int finishWithStars = 0;
+    private int levelIndex;
 
     void Start(){
-		True.SetActive (false);
+        levelIndex = Application.loadedLevel;
+
+        True.SetActive (false);
 		False1.SetActive (false);
 		False2.SetActive (false);
 		False3.SetActive (false);
@@ -75,7 +79,7 @@ public class WhackerPreGame : MonoBehaviour {
 		Slider.SetActive (false);
 		UpperFrame.SetActive (false);
 
-	}
+    }
 
 	public void NotesBack(){
 		PregameFrame.SetActive (true);
@@ -85,8 +89,31 @@ public class WhackerPreGame : MonoBehaviour {
 		SceneManager.LoadScene (x);
 	}
 	public void Next(string x){
-		SceneManager.LoadScene (x);
-	}
+        //SceneManager.LoadScene (x);
+        if (levelIndex.ToString() == "Level24Scene1MOD")
+        {
+            GameObject.Find("EndGame").SetActive(true);
+        }
+        else
+        {
+            if (!PlayerPrefs.HasKey("isFinished" + levelIndex.ToString()))
+            {
+                SceneManager.LoadScene("Map 1");
+            }
+            else
+            {
+                if (PlayerPrefsX.GetBool("isFinished" + levelIndex.ToString()))
+                {
+                    SceneManager.LoadScene(x);
+                }
+                else
+                {
+                    SceneManager.LoadScene("Map 1");
+                }
+            }
+        }
+
+    }
 	public void GoToThisScene(string x){
 		SceneManager.LoadScene (x);
 	}

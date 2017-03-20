@@ -6,10 +6,13 @@ public class StarCountClass : MonoBehaviour {
 	
 	public GameObject[] targetGO;
 	public int howManyStars=0;
+    public int finishWithStars = 0;
+    public GameObject LevelSuccess;
 
-	void Start(){
 
-	}
+    void Start(){
+        LevelSuccess = GameObject.Find("Success Frame");
+    }
 	void Update(){
 //		CountActive ();
 	}

@@ -16,6 +16,7 @@ public class Counter : MonoBehaviour {
 	public GameNumbers gameNumbers;
 	public bool didResume,didRestart;
 	public int finishWithStars;
+    private int levelIndex;
 
 	void Awake(){
 		finishWithStars = 0;
@@ -25,7 +26,8 @@ public class Counter : MonoBehaviour {
 
 	void Start () {
 		CounterBar = GetComponent<Slider> ();
-	}
+        levelIndex = Application.loadedLevel;
+    }
 
 
 	void Update(){
@@ -47,6 +49,8 @@ public class Counter : MonoBehaviour {
             //StopCoroutine(gameNumbers.addstars(finishWithStars));
             Debug.Log ("you get " +finishWithStars+" stars!");
 			LevelSuccess.GetComponent<Animator> ().enabled = true;
+            //save this to prefs
+            Data.SaveData(levelIndex, true, finishWithStars);
 		}
 
 	}

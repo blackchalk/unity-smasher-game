@@ -14,9 +14,14 @@ public class Level4Scene2 : MonoBehaviour {
 	public GameObject UpperFrame;
 	public Sprite[] sprQuestions;
 	public bool gameEnd = false;
+    private int countStars = 0;
+    public GameObject LevelSuccess;
+    private int levelIndex;
 
-	void Start(){
-		UpperFrame = GameObject.Find ("Upper Frame");
+
+    void Start(){
+        levelIndex = Application.loadedLevel;
+        UpperFrame = GameObject.Find ("Upper Frame");
 		timeBar = GetComponent<Slider> ();
 		timeBar.value = startingTime;
 		questionObjects [counting].SetActive (true);
@@ -45,7 +50,10 @@ public class Level4Scene2 : MonoBehaviour {
 		}
 		if (counting >= 5) {
 			gameEnd = true;
-		}
+            countStars = LevelSuccess.GetComponentInChildren<StarCountClass>().CountActive();
+            Debug.Log("target stars:" + countStars);
+            Data.SaveData(levelIndex, true, countStars);
+        }
 	}
 	public void changeQuestions(int c){
 		if (!gameEnd) {

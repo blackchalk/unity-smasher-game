@@ -33,12 +33,6 @@ public class Level4Scene2Touch : MonoBehaviour
         indexCount = lvl4scene2.counting;
         mscTriggers = GameObject.Find("SoundManager").GetComponent<musicTriggers>();
 
-        // TODO: asd
-        /**if (secondsToWait > 0.1f)
-        {
-            secondsToWait -= Time.deltaTime;
-        }**/
-
 
         // TODO: Create a separate script for loading first questions that forces its collider to enable after ~4s
 

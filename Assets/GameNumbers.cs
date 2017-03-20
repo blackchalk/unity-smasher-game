@@ -11,9 +11,13 @@ public class GameNumbers : MonoBehaviour {
 	public int currentStarCount;//current star in this level
 	public int isFirstTime = 0;
 
-	// Use this for initialization
+	// Use this for initialization  
 	void Start () {
 		currentStarCount = PlayerPrefs.GetInt ("totalStars");
+        if (currentStarCount > 44) {
+            currentStarCount = 44;
+        }
+
 		isFirstTime = PlayerPrefs.GetInt ("isFirstTime");
 	}
 
