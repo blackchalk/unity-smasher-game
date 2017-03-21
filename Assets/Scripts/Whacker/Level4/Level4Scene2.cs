@@ -16,11 +16,12 @@ public class Level4Scene2 : MonoBehaviour {
 	public bool gameEnd = false;
     private int countStars = 0;
     public GameObject LevelSuccess;
-    private int levelIndex;
+    private int levelIndex; private Scene scene;
 
 
     void Start(){
-        levelIndex = Application.loadedLevel;
+        levelIndex = SceneManager.GetActiveScene().buildIndex;
+        scene = SceneManager.GetActiveScene();
         UpperFrame = GameObject.Find ("Upper Frame");
 		timeBar = GetComponent<Slider> ();
 		timeBar.value = startingTime;

@@ -24,10 +24,11 @@ public class WhackerPreGame : MonoBehaviour {
     public float secondsToWait = 5.0f;
     public int finishWithStars = 0;
     private int levelIndex;
+    private Scene scene;
 
     void Start(){
-        levelIndex = Application.loadedLevel;
-
+        levelIndex = SceneManager.GetActiveScene().buildIndex;
+        scene = SceneManager.GetActiveScene();
         True.SetActive (false);
 		False1.SetActive (false);
 		False2.SetActive (false);
@@ -89,25 +90,28 @@ public class WhackerPreGame : MonoBehaviour {
 		SceneManager.LoadScene (x);
 	}
 	public void Next(string x){
-        //SceneManager.LoadScene (x);
-        if (levelIndex.ToString() == "Level24Scene1MOD")
+        Debug.Log("im here:" + scene.name);
+        if (scene.name.Equals("Level24Scene1MOD"))
         {
             GameObject.Find("EndGame").SetActive(true);
         }
         else
         {
-            if (!PlayerPrefs.HasKey("isFinished" + levelIndex.ToString()))
+            if (!PlayerPrefs.HasKey("isFinished" + scene.name))
             {
+                Debug.Log("no playerprefs");
                 SceneManager.LoadScene("Map 1");
             }
             else
-            {
-                if (PlayerPrefsX.GetBool("isFinished" + levelIndex.ToString()))
+           {
+                if (PlayerPrefsX.GetBool("isFinished" + scene.name))
                 {
+                    Debug.Log("has playerprefs");
                     SceneManager.LoadScene(x);
                 }
                 else
                 {
+                    Debug.Log("no playerprefs-inner");
                     SceneManager.LoadScene("Map 1");
                 }
             }

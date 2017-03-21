@@ -103,26 +103,26 @@ public class TouchControls : MonoBehaviour {
            // {
               //  Debug.Log("catch");
 
-                if (gameObject.tag == "Right")
-                {
-                    mscTrigger.PlaySingle(sfxClip[0]);
-                    ScoreManager.AddPoints(pointsToAdd);
-                    this.gameObject.GetComponent<Animator>().enabled = false;
-                    this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
-                    Counter.AddCounter(counterToAdd);
-                    StartCoroutine(doTransitionOfSprite());
+                //if (gameObject.tag == "Right")
+                //{
+                //    mscTrigger.PlaySingle(sfxClip[0]);
+                //    ScoreManager.AddPoints(pointsToAdd);
+                //    this.gameObject.GetComponent<Animator>().enabled = false;
+                //    this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+                //    Counter.AddCounter(counterToAdd);
+                //    StartCoroutine(doTransitionOfSprite());
 
 
-                }
-                else if (gameObject.tag == "Wrong")
-                {
-                    mscTrigger.PlaySingle(sfxClip[1]);
-                    ScoreManager.AddPoints(pointsToAdd);
-                    this.gameObject.GetComponent<Animator>().enabled = false;
-                    this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
-                    HeartAndStars.MinusHeartAndStars(toBeDeducted);
-                    StartCoroutine(doTransitionOfSprite());
-                }
+                //}
+                //else if (gameObject.tag == "Wrong")
+                //{
+                //    mscTrigger.PlaySingle(sfxClip[1]);
+                //    ScoreManager.AddPoints(pointsToAdd);
+                //    this.gameObject.GetComponent<Animator>().enabled = false;
+                //    this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+                //    HeartAndStars.MinusHeartAndStars(toBeDeducted);
+                //    StartCoroutine(doTransitionOfSprite());
+                //}
            // }
 
         }

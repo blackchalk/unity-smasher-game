@@ -28,7 +28,7 @@ public class WhackerPause : MonoBehaviour {
 
 	public void Paused(){
 		isPaused = true;
-		lvl4scene2touch.allowTouch = false;
+		lvl4scene2touch.allowTouch = false; 
 		PauseButton.SetActive (false);
 		PauseFrame.SetActive (true);
 		GamePanel.SetActive (false);
@@ -65,6 +65,6 @@ public class WhackerPause : MonoBehaviour {
 	}
 
 	public void MapButton(){
-		SceneManager.LoadScene ("Map");
+		SceneManager.LoadScene ("Map 1");
 	}
 }

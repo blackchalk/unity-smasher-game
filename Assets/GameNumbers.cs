@@ -13,13 +13,20 @@ public class GameNumbers : MonoBehaviour {
 
 	// Use this for initialization  
 	void Start () {
-		currentStarCount = PlayerPrefs.GetInt ("totalStars");
-        if (currentStarCount > 44) {
+		//currentStarCount = PlayerPrefs.GetInt ("totalStars");
+  //      if (currentStarCount > 44) {
+  //          currentStarCount = 44;
+  //      }
+
+		//isFirstTime = PlayerPrefs.GetInt ("isFirstTime");
+	}
+    void Update() {
+        currentStarCount = PlayerPrefs.GetInt("totalStars");
+        if (currentStarCount > 44)
+        {
             currentStarCount = 44;
         }
-
-		isFirstTime = PlayerPrefs.GetInt ("isFirstTime");
-	}
+    }
 
 
 	public void setPrefstoZero(string title){

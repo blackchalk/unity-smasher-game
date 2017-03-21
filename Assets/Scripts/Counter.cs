@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Counter : MonoBehaviour {
 	
@@ -17,8 +18,11 @@ public class Counter : MonoBehaviour {
 	public bool didResume,didRestart;
 	public int finishWithStars;
     private int levelIndex;
+    private int something;
 
-	void Awake(){
+
+    void Awake(){
+        something = new int();
 		finishWithStars = 0;
 		gameNumbers = GameObject.Find ("Gameplay").GetComponent<GameNumbers>();
 
@@ -26,12 +30,13 @@ public class Counter : MonoBehaviour {
 
 	void Start () {
 		CounterBar = GetComponent<Slider> ();
-        levelIndex = Application.loadedLevel;
+        levelIndex = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("levelindex is at:" + levelIndex);
     }
 
 
 	void Update(){
-        Debug.Log(PlayerPrefs.GetInt("totalStars",0));
+        //Debug.Log(PlayerPrefs.GetInt("totalStars",0));
 			CounterBar.value = OldCounter;
 			OldCounter = NewCounter;
 

@@ -36,6 +36,30 @@ public class MapStarProgress : MonoBehaviour {
         }
 
     }
+    void Update() {
+        textStarCount.text = "" + gameNumbers.currentStarCount;
+
+        if (gameNumbers.currentStarCount >= 18 && gameNumbers.currentStarCount < 21)
+        {
+            textAchievement.text = "1";
+        }
+        else if (gameNumbers.currentStarCount >= 21 && gameNumbers.currentStarCount < 24)
+        {
+            textAchievement.text = "2";
+        }
+        else if (gameNumbers.currentStarCount >= 24 && gameNumbers.currentStarCount < 44)
+        {
+            textAchievement.text = "3";
+        }
+        else if (gameNumbers.currentStarCount >= 44)
+        {
+            textAchievement.text = "4";
+        }
+        else
+        {
+            textAchievement.text = "0";
+        }
+    }
 	
     public void goToScene(string x)
     {
