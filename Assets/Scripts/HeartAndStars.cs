@@ -21,8 +21,8 @@ public class HeartAndStars : MonoBehaviour {
 	public GameNumbers gameNumbers;
 
 	void Awake(){
-
-		Slider = GameObject.Find("Counter Slider");
+        HeartAndStarCount = '3';
+        Slider = GameObject.Find("Counter Slider");
 		UpperFrame = GameObject.Find("Upper Frame");
 
 		Pause = GameObject.Find("Pause Button");
@@ -36,8 +36,10 @@ public class HeartAndStars : MonoBehaviour {
 	
 
 	void Update () {
-		
-		if (HeartAndStarCount == '2') {//currentStarCount = PlayerPrefs.GetInt ("totalStars");
+        //Debug.Log("star"+HeartAndStarCount);
+
+
+        if (HeartAndStarCount == '2') {//currentStarCount = PlayerPrefs.GetInt ("totalStars");
 			Star3.SetActive (false);
 			Heart3.SetActive (false);
 

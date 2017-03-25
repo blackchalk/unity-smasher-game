@@ -18,18 +18,13 @@ public class Counter : MonoBehaviour {
 	public bool didResume,didRestart;
 	public int finishWithStars;
     private int levelIndex;
-    private int something;
 
-
-    void Awake(){
-        something = new int();
-		finishWithStars = 0;
-		gameNumbers = GameObject.Find ("Gameplay").GetComponent<GameNumbers>();
-
-	}
 
 	void Start () {
-		CounterBar = GetComponent<Slider> ();
+        finishWithStars = 0;
+        gameNumbers = GameObject.Find("Gameplay").GetComponent<GameNumbers>();
+
+        CounterBar = GetComponent<Slider> ();
         levelIndex = SceneManager.GetActiveScene().buildIndex;
         Debug.Log("levelindex is at:" + levelIndex);
     }
@@ -71,6 +66,7 @@ public class Counter : MonoBehaviour {
 	}
 	public void RestartCounter(){
 		didRestart = true;
-	}
+        NewCounter = 0; 
+    }
 
 }

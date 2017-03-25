@@ -31,8 +31,10 @@ public class PostAndPreGameChangeScenes : MonoBehaviour {
 	}
 	//dynamic scene change
 	public void Restart(string x){
+        Slider.GetComponent<Counter>().RestartCounter();
+        Slider.GetComponent<Counter>().didRestart = false;
 		SceneManager.LoadScene (x);
-	}
+    }
 
 	public void NextLevel(string x){
 		//Debug.Log ("hit");
@@ -50,4 +52,5 @@ public class PostAndPreGameChangeScenes : MonoBehaviour {
             }
         }
 	}
+
 }

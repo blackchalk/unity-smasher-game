@@ -38,7 +38,7 @@ public class Level4Scene2Touch : MonoBehaviour
 
         if (this.gameObject.GetComponent<Lean.Touch.LeanSelectable>().IsSelected) {
             if (this.gameObject.tag=="True")
-            {
+            {   
                     mscTriggers.PlaySingle(sfxclip[0]);
                     ScoreManager.AddPoints(pointsToAdd);
                     GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().timeBar.value = 7f;

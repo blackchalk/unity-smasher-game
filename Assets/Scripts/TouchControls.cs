@@ -27,57 +27,155 @@ public class TouchControls : MonoBehaviour {
 //		cor = doTransitionOfSprite;
 		mscTrigger = GameObject.Find("SoundManager").GetComponent<musicTriggers>();
 	}
-	void Update(){
-		mscTrigger = GameObject.Find("SoundManager").GetComponent<musicTriggers>();
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    if (tapping)
-        //    {
-        //        doubleTap = true;
-        //        Debug.Log("DoubleTap");
-        //        tapping = false;
-        //    }
-        //    else
-        //    {
-        //        tapping = true;
-        //        tapTime = duration;
+	/// <summary>
+    /// 
+    /// </summary>
+    void Update(){
 
-        //    }
-        //}
-        //if (tapping)
+        if (this.gameObject.GetComponent<Lean.Touch.LeanSelectable>().IsSelected)
+        {
+            if (gameObject.tag == "Right")
+            {
+                mscTrigger.PlaySingle(sfxClip[0]);
+                ScoreManager.AddPoints(pointsToAdd);
+                this.gameObject.GetComponent<Animator>().enabled = false;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+                Counter.AddCounter(counterToAdd);
+                this.gameObject.GetComponent<Lean.Touch.LeanSelectable>().Deselect();
+                StartCoroutine(doTransitionOfSprite());
+
+
+            }
+            else if (gameObject.tag == "Wrong")
+            {
+                mscTrigger.PlaySingle(sfxClip[1]);
+                ScoreManager.AddPoints(pointsToAdd);
+                this.gameObject.GetComponent<Animator>().enabled = false;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+                HeartAndStars.MinusHeartAndStars(toBeDeducted);
+                this.gameObject.GetComponent<Lean.Touch.LeanSelectable>().Deselect();
+                StartCoroutine(doTransitionOfSprite());
+            }
+
+
+        }
+
+
+        //mscTrigger = GameObject.Find("SoundManager").GetComponent<musicTriggers>();
+        //      if (Input.GetMouseButtonDown(0))
+        //      {
+        //          if (tapping)
+        //          {
+        //              doubleTap = true;
+        //              Debug.Log("DoubleTap");
+        //              tapping = false;
+        //          }
+        //          else
+        //          {
+        //              tapping = true;
+        //              tapTime = duration;
+
+        //          }
+        //      }
+        //      if (tapping)
+        //      {
+        //          tapTime = tapTime - Time.deltaTime;
+        //          if (tapTime <= 0)
+        //          {
+        //              tapping = false;
+        //              singleTap = true;
+        //              Debug.Log("SingleTap");
+        //          }
+        //      }
+        //  }
+
+        //  public void OnMouseOver()
+        //  {
+
+        //      if (Input.GetMouseButtonDown(0))
+        //      {
+        //          if (tapping)
+        //          {
+        //              doubleTap = true;
+        //              Debug.Log("DoubleTap");
+        //              tapping = false;
+        //          }
+        //          else
+        //          {
+        //              tapping = true;
+        //              tapTime = duration;
+
+        //          }
+
+
+        //          if (singleTap && !gameObject.name.Contains("ggg"))
+        //          {
+
+        //              if (gameObject.tag == "Right")
+        //              {
+        //                  mscTrigger.PlaySingle(sfxClip[0]);
+        //                  ScoreManager.AddPoints(pointsToAdd);
+        //                  this.gameObject.GetComponent<Animator>().enabled = false;
+        //                  this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+        //                  Counter.AddCounter(counterToAdd);
+        //                  StartCoroutine(doTransitionOfSprite());
+
+
+        //              }
+        //              else if (gameObject.tag == "Wrong")
+        //              {
+        //                  mscTrigger.PlaySingle(sfxClip[1]);
+        //                  ScoreManager.AddPoints(pointsToAdd);
+        //                  this.gameObject.GetComponent<Animator>().enabled = false;
+        //                  this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+        //                  HeartAndStars.MinusHeartAndStars(toBeDeducted);
+        //                  StartCoroutine(doTransitionOfSprite());
+        //              }
+        //          }
+        //          if (doubleTap && gameObject.name.Contains("ggg"))
+        //          {
+        //              Debug.Log("catch");
+
+        //              if (gameObject.tag == "Right")
+        //              {
+        //                  mscTrigger.PlaySingle(sfxClip[0]);
+        //                  ScoreManager.AddPoints(pointsToAdd);
+        //                  this.gameObject.GetComponent<Animator>().enabled = false;
+        //                  this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+        //                  Counter.AddCounter(counterToAdd);
+        //                  StartCoroutine(doTransitionOfSprite());
+
+
+        //              }
+        //              else if (gameObject.tag == "Wrong")
+        //              {
+        //                  mscTrigger.PlaySingle(sfxClip[1]);
+        //                  ScoreManager.AddPoints(pointsToAdd);
+        //                  this.gameObject.GetComponent<Animator>().enabled = false;
+        //                  this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+        //                  HeartAndStars.MinusHeartAndStars(toBeDeducted);
+        //                  StartCoroutine(doTransitionOfSprite());
+        //              }
+        //          }
+        //      }
+        //this.UserDidTapOnPhone() &&
+        //if (!this.usertappedonmenu() && userdideditortap())
         //{
-        //    tapTime = tapTime - Time.deltaTime;
-        //    if (tapTime <= 0)
-        //    {
-        //        tapping = false;
-        //        singleTap = true;
-        //        Debug.Log("SingleTap");
-        //    }
+        //    debug.log("istapping");
         //}
     }
-
-    public void OnMouseOver()
+    IEnumerator doTransitionOfSprite(){
+		yield return new WaitForSeconds (0.4f);
+		Destroy (gameObject);
+	}
+    private bool UserDidTapOnPhone()
     {
-
-        if (Input.GetMouseButtonDown(0))
+        var didTap = false;
+        foreach (Touch touch in Input.touches)
         {
-            //if (tapping)
-            //{
-            //    doubleTap = true;
-            //    Debug.Log("DoubleTap");
-            //    tapping = false;
-            //}
-            //else
-            //{
-            //    tapping = true;
-            //    tapTime = duration;
-
-            //}
-
-
-           // if (singleTap && !gameObject.name.Contains("ggg"))
-           // {
-
+            if (touch.phase == TouchPhase.Began)
+            {
+                didTap = true;
                 if (gameObject.tag == "Right")
                 {
                     mscTrigger.PlaySingle(sfxClip[0]);
@@ -98,38 +196,56 @@ public class TouchControls : MonoBehaviour {
                     HeartAndStars.MinusHeartAndStars(toBeDeducted);
                     StartCoroutine(doTransitionOfSprite());
                 }
-            //}
-            //if (doubleTap && gameObject.name.Contains("ggg"))
-           // {
-              //  Debug.Log("catch");
-
-                //if (gameObject.tag == "Right")
-                //{
-                //    mscTrigger.PlaySingle(sfxClip[0]);
-                //    ScoreManager.AddPoints(pointsToAdd);
-                //    this.gameObject.GetComponent<Animator>().enabled = false;
-                //    this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
-                //    Counter.AddCounter(counterToAdd);
-                //    StartCoroutine(doTransitionOfSprite());
 
 
-                //}
-                //else if (gameObject.tag == "Wrong")
-                //{
-                //    mscTrigger.PlaySingle(sfxClip[1]);
-                //    ScoreManager.AddPoints(pointsToAdd);
-                //    this.gameObject.GetComponent<Animator>().enabled = false;
-                //    this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
-                //    HeartAndStars.MinusHeartAndStars(toBeDeducted);
-                //    StartCoroutine(doTransitionOfSprite());
-                //}
-           // }
-
+            }
         }
-
+        return didTap;
     }
-    IEnumerator doTransitionOfSprite(){
-		yield return new WaitForSeconds (0.4f);
-		Destroy (gameObject);
-	}
+
+    private bool UserTappedOnMenu()
+    {
+        bool didTapMenu = false;
+        if (Input.touchCount > 0)
+        {
+            int pointerID = Input.touches[0].fingerId;
+            if (EventSystem.current.IsPointerOverGameObject(pointerID))
+            {
+                didTapMenu = true;
+            }
+        }
+        return didTapMenu;
+    }
+
+    private bool UserDidEditorTap()
+    {
+        var didEditorTap = false;
+        if (Input.GetMouseButtonDown(0))
+        {
+            didEditorTap = true;
+            if (gameObject.tag == "Right")
+            {
+                mscTrigger.PlaySingle(sfxClip[0]);
+                ScoreManager.AddPoints(pointsToAdd);
+                this.gameObject.GetComponent<Animator>().enabled = false;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+                Counter.AddCounter(counterToAdd);
+                StartCoroutine(doTransitionOfSprite());
+
+
+            }
+            else if (gameObject.tag == "Wrong")
+            {
+                mscTrigger.PlaySingle(sfxClip[1]);
+                ScoreManager.AddPoints(pointsToAdd);
+                this.gameObject.GetComponent<Animator>().enabled = false;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+                HeartAndStars.MinusHeartAndStars(toBeDeducted);
+                StartCoroutine(doTransitionOfSprite());
+            }
+        }
+        return didEditorTap;
+    }
+
+  
 }

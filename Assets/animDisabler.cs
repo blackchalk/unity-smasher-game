@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class animDisabler : MonoBehaviour {
 	public unpaused disabler;
-
+    public GameObject goCount;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        disabler = GameObject.Find("Count").GetComponent<unpaused>();
+        goCount = GameObject.Find("Count");
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        disabler = GameObject.Find("Count").GetComponent<unpaused>();
-        if (GameObject.Find("Count").activeSelf == true)
+    
+        if (goCount.activeSelf == true)
             {
                 if (disabler.begin == false)
-                {
+                {   
                 Debug.Log("pausing");
                     this.gameObject.GetComponent<Animator>().enabled = false;
                 }
@@ -26,7 +27,7 @@ public class animDisabler : MonoBehaviour {
                 this.gameObject.GetComponent<Animator>().enabled = true;
                 }
             }
-            else if (GameObject.Find("Count").activeSelf == false && !GameObject.Find("Count").GetComponent<unpaused>().isActiveAndEnabled)
+            else if (goCount.activeSelf == false || !goCount.GetComponent<unpaused>().isActiveAndEnabled || disabler==null)
            {
            }
 	
