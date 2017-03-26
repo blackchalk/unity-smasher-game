@@ -91,9 +91,9 @@ public class WhackerPreGame : MonoBehaviour {
 	}
 	public void Next(string x){
         Debug.Log("im here:" + scene.name);
-        if (scene.name.Equals("Level24Scene1MOD"))
+        if (scene.name.Equals("Level24Scene1MOD") && PlayerPrefs.HasKey("isFinished" + scene.name))
         {
-            GameObject.Find("EndGame").SetActive(true);
+            SceneManager.LoadScene("LevelFinishMOD");
         }
         else
         {
@@ -112,7 +112,7 @@ public class WhackerPreGame : MonoBehaviour {
                 else
                 {
                     Debug.Log("no playerprefs-inner");
-                    SceneManager.LoadScene("Map 1");
+                    SceneManager.LoadScene("Map 1");    
                 }
             }
         }

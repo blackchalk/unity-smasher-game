@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+[System.Serializable]
 public class LevelSelectionLogic : MonoBehaviour {
 
 	public List<LevelList> levelList = new List<LevelList>(); //List of level class;
@@ -37,9 +37,9 @@ public class LevelSelectionLogic : MonoBehaviour {
 			//draw stats depends on how much stars we gained;
 			if(levelList[i].isFinished)
 			{
-				if(levelList[i].starsCount == 1) levelList[i].Stats.sprite = levelList[i].levelSettings.OneStar;
-				if(levelList[i].starsCount == 2) levelList[i].Stats.sprite = levelList[i].levelSettings.TwoStars;
-				if(levelList[i].starsCount == 3) levelList[i].Stats.sprite = levelList[i].levelSettings.ThreeStars;
+                if (levelList[i].starsCount == 1) { levelList[i].Stats.sprite = levelList[i].levelSettings.OneStar; }
+                if (levelList[i].starsCount == 2) { levelList[i].Stats.sprite = levelList[i].levelSettings.TwoStars; }
+                if (levelList[i].starsCount == 3) { levelList[i].Stats.sprite = levelList[i].levelSettings.ThreeStars; }
 
 				//unlock next level;
 				if(i+1 <= levelList.Count-1)
@@ -94,8 +94,8 @@ public class LevelSelectionLogic : MonoBehaviour {
 [System.Serializable]
 public class LevelList
 {
-	public SpriteRenderer LevelObject;			//Level object renderer in the scene (assign from hierarchy panel);
-	public SpriteRenderer Stats;				//Level stats renderer in the scene (assign from hierarchy panel);
+    public SpriteRenderer LevelObject;//Level object renderer in the scene (assign from hierarchy panel);
+    public SpriteRenderer Stats;				//Level stats renderer in the scene (assign from hierarchy panel);
 	public int LevelIndex;						//Level index, can be found in the build settings;
 	public bool unlocked;						//Is level unlocked? you can unlock it as default;
 	public bool isFinished;						//Is level finished?

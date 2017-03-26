@@ -13,19 +13,27 @@ public class GameNumbers : MonoBehaviour {
 
 	// Use this for initialization  
 	void Start () {
-		//currentStarCount = PlayerPrefs.GetInt ("totalStars");
+        if (PlayerPrefs.HasKey("totalStars") == true && PlayerPrefs.GetInt("totalStars")!=0)
+        {
+            currentStarCount = PlayerPrefs.GetInt("totalStars");
+        }
+        else {
+            PlayerPrefs.SetInt("totalStars", 0);
+        }
+
+        Debug.Log(currentStarCount);
   //      if (currentStarCount > 44) {
   //          currentStarCount = 44;
   //      }
 
-		//isFirstTime = PlayerPrefs.GetInt ("isFirstTime");
+		//isFirstTime = PlayerPrefs.GetInt ("isFirstTime"); 
 	}
     void Update() {
         currentStarCount = PlayerPrefs.GetInt("totalStars");
-        if (currentStarCount > 44)
-        {
-            currentStarCount = 44;
-        }
+        //if (currentStarCount > 44)
+        //{
+         //   currentStarCount = 44;
+        //}
     }
 
 
@@ -41,9 +49,12 @@ public class GameNumbers : MonoBehaviour {
 		return x;
 	}
 	public IEnumerator addstars(int x){
-		currentStarCount= currentStarCount+x;
-		yield return new WaitForSeconds (0.1f);
-		PlayerPrefs.SetInt ("totalStars", currentStarCount);
+		currentStarCount = currentStarCount + x;
+        Debug.Log("adding :"+currentStarCount);
+        PlayerPrefs.SetInt("totalStars", currentStarCount);
+        yield return new WaitForSeconds (0.1f);
+		//PlayerPrefs.SetInt ("totalStars", currentStarCount);
+        //Debug.Log("successfully added star"+currentStarCount);
 	}
 		
 }

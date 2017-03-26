@@ -13,6 +13,7 @@ public class MapStarProgress : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gameNumbers = GameObject.Find("Gameplay").GetComponent<GameNumbers>();
+        gameNumbers.currentStarCount = PlayerPrefs.GetInt("totalStars");
         textStarCount.text = ""+gameNumbers.currentStarCount;
 
         if (gameNumbers.currentStarCount >= 18 && gameNumbers.currentStarCount < 21)
@@ -37,7 +38,7 @@ public class MapStarProgress : MonoBehaviour {
 
     }
     void Update() {
-        textStarCount.text = "" + gameNumbers.currentStarCount;
+        textStarCount.text = "" + PlayerPrefs.GetInt("totalStars");
 
         if (gameNumbers.currentStarCount >= 18 && gameNumbers.currentStarCount < 21)
         {

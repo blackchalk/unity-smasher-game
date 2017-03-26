@@ -26,7 +26,7 @@ public class Counter : MonoBehaviour {
 
         CounterBar = GetComponent<Slider> ();
         levelIndex = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("levelindex is at:" + levelIndex);
+        //Debug.Log("levelindex is at:" + levelIndex);
     }
 
 
@@ -44,11 +44,11 @@ public class Counter : MonoBehaviour {
 			//Slider.SetActive (false);
 			Pause.SetActive (false);
 			finishWithStars = LevelSuccess.GetComponentInChildren<StarCountClass> ().CountActive ();
-            //add up the stars to persistent data
-            StartCoroutine(gameNumbers.addstars(finishWithStars));
             //StopCoroutine(gameNumbers.addstars(finishWithStars));
             Debug.Log ("you get " +finishWithStars+" stars!");
-			LevelSuccess.GetComponent<Animator> ().enabled = true;
+            //add up the stars to persistent data
+            StartCoroutine(gameNumbers.addstars(finishWithStars));
+            LevelSuccess.GetComponent<Animator> ().enabled = true;
             //save this to prefs
             Data.SaveData(levelIndex, true, finishWithStars);
 		}

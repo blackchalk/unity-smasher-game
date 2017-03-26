@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class musicTriggers : MonoBehaviour {
 
@@ -31,8 +32,8 @@ public class musicTriggers : MonoBehaviour {
 
 	void Update () {
 
-		playInScene=Application.loadedLevelName;
-		Debug.Log("playInScene:"+playInScene);
+		playInScene=SceneManager.GetActiveScene().name;
+		//Debug.Log("playInScene:"+playInScene);
 		if(playInScene=="Map"||playInScene=="Main"){	
 			clip=0;
 			bgmusic.ChangeMusic(clip,waitForSequence,keepTimeAndVolume,trackVolume,fadeIn,fadeOutPrevious);
@@ -55,11 +56,6 @@ public class musicTriggers : MonoBehaviour {
 			clip=3;
 			bgmusic.ChangeMusic(clip,waitForSequence,keepTimeAndVolume,trackVolume,fadeIn,fadeOutPrevious);
 		}
-		if(playInScene=="Storyline"){
-//			clip=4;
-//			bgmusic.ChangeMusic(clip,waitForSequence,keepTimeAndVolume,trackVolume,fadeIn,fadeOutPrevious);
-		}
-
 
 		//handle sounds
 		if (isMusicOff) {
