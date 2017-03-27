@@ -21,9 +21,14 @@ public class WhackerPreGame : MonoBehaviour {
 	public GameObject LevelFail;
 	public GameObject Questions;
 	public Level4Scene2 lvl4scene2;
+    private int finishWithStars;
+    private int levelIndex;
     public float secondsToWait = 5.0f;
 
     void Start(){
+
+        levelIndex = SceneManager.GetActiveScene().buildIndex;
+        finishWithStars = 0;
 		True.SetActive (false);
 		False1.SetActive (false);
 		False2.SetActive (false);
@@ -69,8 +74,11 @@ public class WhackerPreGame : MonoBehaviour {
 
 	}
 	public void LevelFinish(){
-		LevelSuccess.GetComponent<Animator> ().enabled = true;
-		Questions.SetActive (false);
+        lvl4scene2.gameEnd = false;
+        LevelSuccess.GetComponent<Animator> ().enabled = true;
+        finishWithStars = LevelSuccess.GetComponentInChildren<StarCountClass>().CountActive();
+        Data.SaveData(levelIndex, true, finishWithStars);
+        Questions.SetActive (false);
 		Slider.SetActive (false);
 		UpperFrame.SetActive (false);
 
@@ -84,8 +92,22 @@ public class WhackerPreGame : MonoBehaviour {
 		SceneManager.LoadScene (x);
 	}
 	public void Next(string x){
-		SceneManager.LoadScene (x);
-	}
+        if (!PlayerPrefs.HasKey("isFinished" + levelIndex.ToString()))
+        {
+            SceneManager.LoadScene("Map 1");
+        }
+        else
+        {
+            if (PlayerPrefsX.GetBool("isFinished" + levelIndex.ToString()))
+            {
+                SceneManager.LoadScene(x);
+            }
+            else
+            {
+                SceneManager.LoadScene("Map 1");
+            }
+        }
+    }
 	public void GoToThisScene(string x){
 		SceneManager.LoadScene (x);
 	}

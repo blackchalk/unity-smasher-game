@@ -11,9 +11,11 @@ public class PostAndPreGameChangeScenes : MonoBehaviour {
 	public GameObject Slider;
 	public GameObject Right;
 	public GameObject Wrong;
+    private int levelIndex;
 
-	void Awake(){
-		UpperFrame = GameObject.Find ("Upper Frame");
+    void Awake(){
+        levelIndex = SceneManager.GetActiveScene().buildIndex;
+        UpperFrame = GameObject.Find ("Upper Frame");
 		Paused = GameObject.Find ("Pause Button");
 		Slider = GameObject.Find ("Counter Slider");
 		Right = GameObject.Find ("Right");
@@ -21,7 +23,7 @@ public class PostAndPreGameChangeScenes : MonoBehaviour {
 	}
 
 	public void Map(){
-		SceneManager.LoadScene ("Map");
+		SceneManager.LoadScene ("Map 1");
 	}
 	//dynamic scene change
 	public void Restart(string x){
@@ -29,7 +31,21 @@ public class PostAndPreGameChangeScenes : MonoBehaviour {
 	}
 
 	public void NextLevel(string x){
-		Debug.Log ("hit");
-		SceneManager.LoadScene (x);
-	}
+        if (!PlayerPrefs.HasKey("isFinished" + levelIndex.ToString()))
+        {
+            SceneManager.LoadScene("Map 1");
+        }
+        else
+        {
+            if (PlayerPrefsX.GetBool("isFinished" + levelIndex.ToString()))
+            {
+                SceneManager.LoadScene(x);
+            }
+            else
+            {
+                SceneManager.LoadScene("Map 1");
+            }
+        }
+    
+    }
 }

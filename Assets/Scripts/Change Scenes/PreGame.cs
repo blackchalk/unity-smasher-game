@@ -71,7 +71,7 @@ public class PreGame : MonoBehaviour {
 
 
 	public void Exit(){
-        SceneManager.LoadScene("Map");
+        SceneManager.LoadScene("Map 1");
 	}
 
 }

@@ -58,6 +58,6 @@ public class Pause : MonoBehaviour {
 	}
 
 	public void MapButton(){
-		SceneManager.LoadScene ("Map");
+		SceneManager.LoadScene ("Map 1");
 	}
 }
