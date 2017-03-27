@@ -12,8 +12,8 @@ public class achievementUnlocker : MonoBehaviour {
 	private GameNumbers mgn;
 
 	void Awake(){
-	
-		mgn = mGameNumbers.GetComponent<GameNumbers> (); 
+        mGameNumbers = GameObject.Find("GameManager");
+		mgn = mGameNumbers.GetComponentInChildren<GameNumbers>(); 
 		lock1.SetActive (true);
 		lock2.SetActive (true);
 		lock3.SetActive (true);

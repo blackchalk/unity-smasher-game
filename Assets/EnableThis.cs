@@ -10,17 +10,23 @@ public class EnableThis : MonoBehaviour {
 
 	}
     void Update() {
+        if (this.gameObject.activeInHierarchy){
+            if (secondsToDisable < 0f)
+            {
 
-        if (secondsToDisable < 0f)
-        {
+                this.gameObject.SetActive(false);
+                // Destroy(this.gameObject);
+            }
+            else
+            {
+                secondsToDisable -= Time.deltaTime;
+            }
+        }
 
-            this.gameObject.SetActive(false);
-           // Destroy(this.gameObject);
-        }
-        else
-        {
-            secondsToDisable -= Time.deltaTime;
-        }
+    }
+    public void enableHelpAndDestroy()
+    {
+        this.gameObject.SetActive(true);
 
     }
 
