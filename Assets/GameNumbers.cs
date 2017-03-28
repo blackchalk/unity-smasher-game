@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scenemanagement;
 
 public class GameNumbers : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class GameNumbers : MonoBehaviour {
 	public int achievement4;//all stars
 	public int currentStarCount;//current star in this level
 	public int isFirstTime = 0;
+	private int levelIndex;
 
 	// Use this for initialization  
 	void Start () {
@@ -29,6 +31,8 @@ public class GameNumbers : MonoBehaviour {
 		//isFirstTime = PlayerPrefs.GetInt ("isFirstTime"); 
 	}
     void Update() {
+	//object is of simpleton instance pattern; check it every time
+	levelIndex = SceneManager.GetActiveScene().buildIndex;
         currentStarCount = PlayerPrefs.GetInt("totalStars");
         //if (currentStarCount > 44)
         //{
@@ -49,12 +53,23 @@ public class GameNumbers : MonoBehaviour {
 		return x;
 	}
 	public IEnumerator addstars(int x){
-		currentStarCount = currentStarCount + x;
-        Debug.Log("adding :"+currentStarCount);
-        PlayerPrefs.SetInt("totalStars", currentStarCount);
-        yield return new WaitForSeconds (0.1f);
-		//PlayerPrefs.SetInt ("totalStars", currentStarCount);
-        //Debug.Log("successfully added star"+currentStarCount);
+	//validate if stars have been acquired before
+	var int p = 0; //previous
+	var int q = x //recent
+	var int sum = 0; //unique star to be added
+		if(PlayerPrefs.HasKey("startsCount" + level.LevelIndex.ToString()))
+		{
+			p = PlayerPrefs.GetInt("startsCount"+ level.LevelIndex.ToString());
+			//compare previous to recent collected stars recent>previous
+			if(q>p)
+			{
+				//minus unique stars
+				sum = q - p;
+				currentStarCount = currentStarCount + sum;
+				Debug.Log("adding :"+currentStarCount);
+        			PlayerPrefs.SetInt("totalStars", currentStarCount);
+			}
+		}
+        	yield return new WaitForSeconds (0.1f);
 	}
-		
 }
