@@ -53,23 +53,24 @@ public class GameNumbers : MonoBehaviour {
 		return x;
 	}
 	public IEnumerator addstars(int x){
-	//validate if stars have been acquired before
-	var int p = 0; //previous
-	var int q = x //recent
-	var int sum = 0; //unique star to be added
-		if(PlayerPrefs.HasKey("startsCount" + level.LevelIndex.ToString()))
-		{
-			p = PlayerPrefs.GetInt("startsCount"+ level.LevelIndex.ToString());
-			//compare previous to recent collected stars recent>previous
-			if(q>p)
-			{
-				//minus unique stars
-				sum = q - p;
-				currentStarCount = currentStarCount + sum;
-				Debug.Log("adding :"+currentStarCount);
-        			PlayerPrefs.SetInt("totalStars", currentStarCount);
-			}
-		}
-        	yield return new WaitForSeconds (0.1f);
+        //validate if stars have been acquired before
+        int p = 0; //previous
+        int q = x; //recent
+        int sum = 0; //unique star to be added
+        if (PlayerPrefs.HasKey("startsCount" + levelIndex.ToString()))
+            {
+            p = PlayerPrefs.GetInt("startsCount" + levelIndex.ToString());
+                //compare previous to recent collected stars recent>previous
+                if (q > p)
+                {
+                //minus unique stars
+                sum = q - p;
+                Debug.Log("star/s added :" + sum);
+                currentStarCount = currentStarCount + sum;
+                Debug.Log("totalstars :" + currentStarCount);
+                PlayerPrefs.SetInt("totalStars", currentStarCount);
+                }
+            }
+        yield return new WaitForSeconds(0.1f);
 	}
 }
