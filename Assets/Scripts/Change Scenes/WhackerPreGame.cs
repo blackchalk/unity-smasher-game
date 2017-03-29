@@ -25,8 +25,9 @@ public class WhackerPreGame : MonoBehaviour {
     private int levelIndex;
     public float secondsToWait = 5.0f;
     private GameNumbers gameNumbers;
-
+    private musicTriggers mscTriggers;
     void Start(){
+        mscTriggers = GameObject.Find("GameManager").GetComponentInChildren<musicTriggers>();
         gameNumbers = GameObject.Find("Gameplay").GetComponent<GameNumbers>();
         levelIndex = SceneManager.GetActiveScene().buildIndex;
         finishWithStars = 0;
@@ -77,9 +78,10 @@ public class WhackerPreGame : MonoBehaviour {
 	public void LevelFinish(){
         lvl4scene2.gameEnd = false;
         LevelSuccess.GetComponent<Animator> ().enabled = true;
+        mscTriggers.PlaySingle(mscTriggers.audioClip[1]);
         finishWithStars = LevelSuccess.GetComponentInChildren<StarCountClass>().CountActive();
-        Data.SaveData(levelIndex, true, finishWithStars);
         StartCoroutine(gameNumbers.addstars(finishWithStars));
+        Data.SaveData(levelIndex, true, finishWithStars);
         Questions.SetActive (false);
 		Slider.SetActive (false);
 		UpperFrame.SetActive (false);
@@ -103,7 +105,15 @@ public class WhackerPreGame : MonoBehaviour {
         {
             if (PlayerPrefsX.GetBool("isFinished" + levelIndex.ToString()))
             {
-                SceneManager.LoadScene(x);
+                Debug.Log("" + levelIndex);
+                if (levelIndex == 27)
+                {//finallevel
+                    SceneManager.LoadScene("LEVELFINISH");
+                }
+                else
+                {
+                    SceneManager.LoadScene(x);
+                }
             }
             else
             {
@@ -111,14 +121,20 @@ public class WhackerPreGame : MonoBehaviour {
             }
         }
     }
+    public void enableGO(GameObject target)
+    {
+        target.SetActive(true);
+        mscTriggers.PlaySingle(mscTriggers.audioClip[2]);
+    }
 	public void GoToThisScene(string x){
-		SceneManager.LoadScene (x);
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene (x);
 	}
 
 
 	public void Exit(){
-		Application.Quit();
-	}
+        SceneManager.LoadScene("Map 1");
+    }
 	IEnumerator afterWhackEm(float sec){
 		yield return new WaitForSeconds (sec);
 		Slider.SetActive (true);

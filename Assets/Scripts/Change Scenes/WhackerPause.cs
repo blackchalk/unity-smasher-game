@@ -56,10 +56,12 @@ public class WhackerPause : MonoBehaviour {
 	}
 
 	public void HomeButton(){
+        Time.timeScale = 1.0f;
 		SceneManager.LoadScene ("Main");
 	}
 
 	public void MapButton(){
-		SceneManager.LoadScene ("Map 1");
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene ("Map 1");
 	}
 }

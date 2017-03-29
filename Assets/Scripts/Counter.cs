@@ -18,10 +18,12 @@ public class Counter : MonoBehaviour {
 	public bool didResume,didRestart;
 	public int finishWithStars;
     private int levelIndex;
+    private musicTriggers mscTriggers;
 
     void Awake(){
 		finishWithStars = 0;
-		gameNumbers = GameObject.Find ("Gameplay").GetComponent<GameNumbers>();
+        mscTriggers = GameObject.Find("GameManager").GetComponentInChildren<musicTriggers>();
+        gameNumbers = GameObject.Find ("Gameplay").GetComponent<GameNumbers>();
         levelIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
@@ -48,9 +50,9 @@ public class Counter : MonoBehaviour {
             //save this to prefs
             StartCoroutine(gameNumbers.addstars(finishWithStars));
             Data.SaveData(levelIndex, true, finishWithStars);
-            //StopCoroutine(gameNumbers.addstars(finishWithStars));
-            Debug.Log ("you get " +finishWithStars+" stars!");
-			LevelSuccess.GetComponent<Animator> ().enabled = true;
+            mscTriggers.PlaySingle(mscTriggers.audioClip[1]);
+            LevelSuccess.GetComponent<Animator> ().enabled = true;
+
 		}
 
 	}

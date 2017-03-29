@@ -12,6 +12,7 @@ public class musicTriggers : MonoBehaviour {
 	public float fadeOutPrevious;
 	public int clip;
 	public string playInScene;
+    public AudioClip[] audioClip;
 	private MusicManager bgmusic;
 
 	//soundeffects
@@ -33,11 +34,11 @@ public class musicTriggers : MonoBehaviour {
 	void Update () {
 
 		playInScene=SceneManager.GetActiveScene().name;
-		//Debug.Log("playInScene:"+playInScene);
-		if(playInScene=="Map 1"||playInScene=="Main"){	
-			clip=0;
-			bgmusic.ChangeMusic(clip,waitForSequence,keepTimeAndVolume,trackVolume,fadeIn,fadeOutPrevious);
-		}
+        if (playInScene == "Map 1" || playInScene == "Main")
+        {
+            clip = 0;
+            bgmusic.ChangeMusic(clip, waitForSequence, keepTimeAndVolume, trackVolume, fadeIn, fadeOutPrevious);
+        }
         else if (playInScene == "Level1" || playInScene == "Level2-mod" || playInScene == "Level3-mod" ||
             playInScene == "Level4Scene1MODMOD" || playInScene == "Level5MOD" || playInScene == "Level6MOD" ||
             playInScene == "Level7MOD" || playInScene == "Level8Scene1MOD")
@@ -45,18 +46,24 @@ public class musicTriggers : MonoBehaviour {
             clip = 1;
             bgmusic.ChangeMusic(clip, waitForSequence, keepTimeAndVolume, trackVolume, fadeIn, fadeOutPrevious);
         }
-        else if(playInScene=="Level9MOD"||playInScene=="Level10MOD"||playInScene=="Level11MOD"||
-			playInScene=="Level12Scene1MOD"||playInScene=="Level13MOD"||playInScene=="Level14MOD"||
-			playInScene=="Level5MOD"||playInScene=="Level16Scene1MOD"){
-			clip=2;
-			bgmusic.ChangeMusic(clip,waitForSequence,keepTimeAndVolume,trackVolume,fadeIn,fadeOutPrevious);
-		}
-		else if(playInScene=="Level17MOD"||playInScene=="Level18MOD"||playInScene=="Level19MOD"||
-			playInScene=="Level20Scene1MOD"||playInScene=="Level21MOD"||playInScene=="Level22MOD"||
-			playInScene=="Level23MOD"||playInScene=="Level24Scene1MOD"){
-			clip=3;
-			bgmusic.ChangeMusic(clip,waitForSequence,keepTimeAndVolume,trackVolume,fadeIn,fadeOutPrevious);
-		}
+        else if (playInScene == "Level9MOD" || playInScene == "Level10MOD" || playInScene == "Level11MOD" ||
+            playInScene == "Level12Scene1MOD" || playInScene == "Level13MOD" || playInScene == "Level14MOD" ||
+            playInScene == "Level5MOD" || playInScene == "Level16Scene1MOD")
+        {
+            clip = 2;
+            bgmusic.ChangeMusic(clip, waitForSequence, keepTimeAndVolume, trackVolume, fadeIn, fadeOutPrevious);
+        }
+        else if (playInScene == "Level17MOD" || playInScene == "Level18MOD" || playInScene == "Level19MOD" ||
+            playInScene == "Level20Scene1MOD" || playInScene == "Level21MOD" || playInScene == "Level22MOD" ||
+            playInScene == "Level23MOD" || playInScene == "Level24Scene1MOD")
+        {
+            clip = 3;
+            bgmusic.ChangeMusic(clip, waitForSequence, keepTimeAndVolume, trackVolume, fadeIn, fadeOutPrevious);
+        }
+        else if (playInScene == "LEVELFINISH") {
+            //clip = 0;
+            //bgmusic.ChangeMusic(clip, waitForSequence, keepTimeAndVolume, 0.0f, fadeIn, fadeOutPrevious);
+        }
 
 		//handle sounds
 		if (isMusicOff) {

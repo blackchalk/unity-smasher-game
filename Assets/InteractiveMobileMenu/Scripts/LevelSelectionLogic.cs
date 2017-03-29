@@ -9,10 +9,12 @@ public class LevelSelectionLogic : MonoBehaviour {
 	private CameraControls cam; 		// Camera controls reference;
 	private float touchTime;			// How long touch time;
 	private float reactTime = 0.25F;		// Fixed touch time to level loading happens;
+    private musicTriggers mscTriggers;
 
 	void Awake()
 	{
-		cam = Camera.main.GetComponent<CameraControls>();
+        mscTriggers = GameObject.Find("GameManager").GetComponentInChildren<musicTriggers>();
+        cam = Camera.main.GetComponent<CameraControls>();
 
 		if(PlayerPrefs.HasKey("currentCamPos") && cam.cameraPosition == CameraControls.CameraPosition.SaveCurrent)
 		{
@@ -83,6 +85,7 @@ public class LevelSelectionLogic : MonoBehaviour {
 				{
 					Application.LoadLevel(levelList[i].LevelIndex);
 					PlayerPrefsX.SetVector3("currentCamPos", cam.transform.position);
+                    mscTriggers.PlaySingle(mscTriggers.audioClip[0]);
 				}
 			}
 			touchTime = 0;

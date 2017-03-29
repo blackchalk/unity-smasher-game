@@ -54,10 +54,12 @@ public class Pause : MonoBehaviour {
 	}
 
 	public void HomeButton(){
-		SceneManager.LoadScene ("Main");
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene ("Main");
 	}
 
 	public void MapButton(){
-		SceneManager.LoadScene ("Map 1");
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene ("Map 1");
 	}
 }

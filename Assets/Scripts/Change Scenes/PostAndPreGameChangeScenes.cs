@@ -23,7 +23,8 @@ public class PostAndPreGameChangeScenes : MonoBehaviour {
 	}
 
 	public void Map(){
-		SceneManager.LoadScene ("Map 1");
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene ("Map 1");
 	}
 	//dynamic scene change
 	public void Restart(string x){
