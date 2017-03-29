@@ -23,7 +23,7 @@ public class ManualLevelUnlock : MonoBehaviour {
     private CameraControls cam;         // Camera controls reference;
     private float touchTime;            // How long touch time;
     private float reactTime = 0.25F;		// Fixed touch time to level loading happens;
-
+    private int pLevelIndex;
     public GameObject go_NextLevel;
     private ManualLevelUnlock mnl;
     void Awake()
@@ -34,6 +34,13 @@ public class ManualLevelUnlock : MonoBehaviour {
         {
             cam.defaultPosition = PlayerPrefsX.GetVector3("currentCamPos");
         }
+        //Check if player prefs have any data with levels indexes, if so - assign;
+        pLevelIndex = LevelIndex - 1;
+        if (PlayerPrefs.HasKey("startsCount" + pLevelIndex.ToString()))
+        {
+            unlocked = true;
+        }
+
         //Check if player prefs have any data with levels indexes, if so - assign;
 
         if (PlayerPrefs.HasKey("isFinished" + LevelIndex.ToString()))

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-[System.Serializable]
+
 public class LevelSelectionLogic : MonoBehaviour {
 
 	public List<LevelList> levelList = new List<LevelList>(); //List of level class;
