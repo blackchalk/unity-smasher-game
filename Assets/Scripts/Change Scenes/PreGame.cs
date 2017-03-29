@@ -69,7 +69,6 @@ public class PreGame : MonoBehaviour {
 		NotesFrame.SetActive (false);
 	}
 
-
 	public void Exit(){
         SceneManager.LoadScene("Map 1");
 	}

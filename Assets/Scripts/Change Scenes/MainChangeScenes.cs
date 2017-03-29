@@ -21,25 +21,10 @@ public class MainChangeScenes : MonoBehaviour {
 
 
 	void Start(){
-//		Timer = GetComponent<Slider> ();
-		x = SceneManager.GetActiveScene().name;
+        NumberSmasher.SetActive(true);
+        //		Timer = GetComponent<Slider> ();
+        x = SceneManager.GetActiveScene().name;
 	}
-	void Update(){
-		
-		if (x.Equals("Main")||x.Equals("Map")||x.Equals("Storyline")) {
-			
-//			Debug.Log ("main or map scene");
-		} else {
-			startingTime -= Time.deltaTime;
-			Debug.Log (startingTime);
-			if (startingTime <= 0.0f) {
-				Debug.Log ("timer ended");
-				SceneManager.LoadScene ("Main");
-			}
-		}
-	
-	}
-	
 
 
 	public void PlayButton(){

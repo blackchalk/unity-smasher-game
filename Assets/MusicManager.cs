@@ -41,7 +41,7 @@ public class MusicManager : MonoBehaviour {
 				}
 			}else{
 				isFadingOut = false;
-				PlayMusic();
+				//PlayMusic();
 				StartCoroutine(PlayMusic());
 			}
 			if(isFadingIn){
@@ -88,7 +88,7 @@ public class MusicManager : MonoBehaviour {
 			StartingPoint=GetComponent<AudioSource> ().timeSamples;
 			GetComponent<AudioSource> ().clip = clips[nextClip];
 			GetComponent<AudioSource> ().timeSamples=Mathf.RoundToInt(StartingPoint);
-			GetComponent<AudioSource> ().Play ();
+			GetComponent<AudioSource> ().Play ();    
 				//			Debug.Log (""+clips[nextClip]);
 			}
 		}

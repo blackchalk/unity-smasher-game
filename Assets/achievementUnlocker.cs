@@ -25,13 +25,13 @@ public class achievementUnlocker : MonoBehaviour {
 		if (mgn.currentStarCount >= 18) {
 			lock1.SetActive (false);
 		}
-		if (mgn.currentStarCount >= 21) {
+		if (mgn.currentStarCount >= 39) {
 			lock2.SetActive (false);
 		}
-		if (mgn.currentStarCount >= 24) {
+		if (mgn.currentStarCount >= 63) {
 			lock3.SetActive (false);
 		}
-		if (mgn.currentStarCount >= 44) {
+		if (mgn.currentStarCount >= 72) {
 			lock4.SetActive (false);
 		}
 

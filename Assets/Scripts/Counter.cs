@@ -46,8 +46,8 @@ public class Counter : MonoBehaviour {
 			finishWithStars = LevelSuccess.GetComponentInChildren<StarCountClass> ().CountActive ();
             //add up the stars to persistent data
             //save this to prefs
-            Data.SaveData(levelIndex, true, finishWithStars);
             StartCoroutine(gameNumbers.addstars(finishWithStars));
+            Data.SaveData(levelIndex, true, finishWithStars);
             //StopCoroutine(gameNumbers.addstars(finishWithStars));
             Debug.Log ("you get " +finishWithStars+" stars!");
 			LevelSuccess.GetComponent<Animator> ().enabled = true;

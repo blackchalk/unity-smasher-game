@@ -11,7 +11,7 @@ public class Destroyer : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "Right") 
 		{
-			Debug.Log ("hit correct :"+this.gameObject.name);
+			//Debug.Log ("hit correct :"+this.gameObject.name);
 			HeartAndStars.MinusHeartAndStars (objectHitDestroyer);
 			Destroy (col.gameObject);
 		} 

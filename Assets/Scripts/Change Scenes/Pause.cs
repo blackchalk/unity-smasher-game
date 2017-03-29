@@ -11,10 +11,10 @@ public class Pause : MonoBehaviour {
 	public GameObject GamePanel;
 	public GameObject UpperFrame;
 	public GameObject lvl1pregame;
-	public GameObject Timer;
+	//public GameObject Timer;
 	public Slider CounterSlider;
 	public Counter cs;
-	public unpaused disabler;
+	//public unpaused disabler;
 	public GameObject counterSliderGO;
 
 
@@ -24,7 +24,7 @@ public class Pause : MonoBehaviour {
 		PauseFrame.SetActive (true);
 		GamePanel.SetActive (true);
 		UpperFrame.SetActive (false);
-		Timer.SetActive (false);
+		//Timer.SetActive (false);
 	
 		if (Time.timeScale == 1f) {
 			Time.timeScale = 0f;
@@ -38,7 +38,7 @@ public class Pause : MonoBehaviour {
 		PauseFrame.SetActive (false);
 		GamePanel.SetActive (false);
 		UpperFrame.SetActive (true);
-		Timer.SetActive (true);
+		//Timer.SetActive (true);
 //
 
 		if (Time.timeScale == 0f) {
@@ -48,9 +48,9 @@ public class Pause : MonoBehaviour {
 	}
 
 	public void Restart(string x){
-//		cs = GameObject.Find ("Counter Slider").GetComponent<Counter> ();
-//		cs.OldCounter = 0;
-		SceneManager.LoadScene (x);
+        Time.timeScale = 1.0f;
+        Counter.NewCounter = 0;
+        SceneManager.LoadScene (x);
 	}
 
 	public void HomeButton(){

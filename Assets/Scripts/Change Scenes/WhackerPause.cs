@@ -22,8 +22,6 @@ public class WhackerPause : MonoBehaviour {
 
 	void Start(){
 		lvl4scene2touch = new Level4Scene2Touch ();
-
-
 	}
 
 	public void Paused(){
@@ -57,14 +55,11 @@ public class WhackerPause : MonoBehaviour {
 		}
 	}
 
-	public void Restart(){
-	}
-
 	public void HomeButton(){
 		SceneManager.LoadScene ("Main");
 	}
 
 	public void MapButton(){
-		SceneManager.LoadScene ("Map");
+		SceneManager.LoadScene ("Map 1");
 	}
 }

@@ -24,9 +24,10 @@ public class WhackerPreGame : MonoBehaviour {
     private int finishWithStars;
     private int levelIndex;
     public float secondsToWait = 5.0f;
+    private GameNumbers gameNumbers;
 
     void Start(){
-
+        gameNumbers = GameObject.Find("Gameplay").GetComponent<GameNumbers>();
         levelIndex = SceneManager.GetActiveScene().buildIndex;
         finishWithStars = 0;
 		True.SetActive (false);
@@ -44,7 +45,7 @@ public class WhackerPreGame : MonoBehaviour {
 		Slider.SetActive (false);
 	}
 	void Update(){
-		if (lvl4scene2.gameEnd == true) {
+        if (lvl4scene2.gameEnd == true) {
 			LevelFinish ();
 		}
 	}
@@ -78,6 +79,7 @@ public class WhackerPreGame : MonoBehaviour {
         LevelSuccess.GetComponent<Animator> ().enabled = true;
         finishWithStars = LevelSuccess.GetComponentInChildren<StarCountClass>().CountActive();
         Data.SaveData(levelIndex, true, finishWithStars);
+        StartCoroutine(gameNumbers.addstars(finishWithStars));
         Questions.SetActive (false);
 		Slider.SetActive (false);
 		UpperFrame.SetActive (false);
@@ -89,6 +91,7 @@ public class WhackerPreGame : MonoBehaviour {
 		NotesFrame.SetActive (false);
 	}
 	public void Restart(string x){
+        Time.timeScale = 1.0f;
 		SceneManager.LoadScene (x);
 	}
 	public void Next(string x){

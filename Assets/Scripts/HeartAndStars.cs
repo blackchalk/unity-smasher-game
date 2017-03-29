@@ -21,8 +21,7 @@ public class HeartAndStars : MonoBehaviour {
 	public GameNumbers gameNumbers;
 
 	void Awake(){
-
-		Slider = GameObject.Find("Counter Slider");
+        Slider = GameObject.Find("Counter Slider");
 		UpperFrame = GameObject.Find("Upper Frame");
 
 		Pause = GameObject.Find("Pause Button");

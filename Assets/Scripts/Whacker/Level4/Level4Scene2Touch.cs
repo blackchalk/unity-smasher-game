@@ -12,13 +12,14 @@ public class Level4Scene2Touch : MonoBehaviour {
 	public AudioClip[] sfxclip;
 	private musicTriggers mscTriggers;
     private WhackerPause whackerPause;
-    public float secondsToWait = 5.0f;
+    public float secondsToWait;
     public bool allowClick = false;
     public bool startingGame = true;
 
 
     void Start(){
-		allowTouch = true;
+        //secondsToWait = 3.0f;
+        allowTouch = true;
 		mscTriggers = GameObject.Find ("SoundManager").GetComponent<musicTriggers> ();
         whackerPause = GameObject.Find("LevelManager").GetComponent<WhackerPause>();
         allowClick = false;
@@ -28,26 +29,28 @@ public class Level4Scene2Touch : MonoBehaviour {
 		indexCount = lvl4scene2.counting;
 		mscTriggers = GameObject.Find("SoundManager").GetComponent<musicTriggers>();
 
-        // TODO: asd
-        //if (secondsToWait >= 0)
-        /**{
-       /     secondsToWait = secondsToWait - Time.deltaTime;
+        // TODO: ONLY APPLY TO FIRST BAT
+        if (secondsToWait > 0)
+        {
+            secondsToWait = secondsToWait - Time.deltaTime;
             allowClick = false;
         }
         else
         {
             allowClick = true;
-        }**/
+        }
     }
 
 	public void OnMouseOver()
 	{
+        if (Time.timeScale >= 1.0f && allowClick==true)
+        {
             if (Input.GetMouseButtonDown(0))
             {
 
                 if (gameObject.tag == "True")
                 {
-                    mscTriggers.PlaySingle(sfxclip[0]);
+                    mscTriggers.PlaySingle(sfxclip[0]); 
                     ScoreManager.AddPoints(pointsToAdd);
                     GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().timeBar.value = 7f;
                     GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().counting += 1;
@@ -69,5 +72,6 @@ public class Level4Scene2Touch : MonoBehaviour {
                     //				SceneManager.LoadScene ("Level4Scene3");
                 }
             }
+        }
 	}
 }

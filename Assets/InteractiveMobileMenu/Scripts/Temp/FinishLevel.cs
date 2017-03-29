@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class FinishLevel : MonoBehaviour {
 
 	public int nextLevelIndex;			//The next scene index;
@@ -9,11 +9,11 @@ public class FinishLevel : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		levelIndex = Application.loadedLevel;	//Getting current level index for saving needs;
+		levelIndex = SceneManager.GetActiveScene().buildIndex;	//Getting current level index for saving needs;
 	}
 	
 	// Examples on how to finish level and save stats;
-	void OnGUI (){
+	void OnGUI (){  
 		if (GUI.Button(new Rect(0, Screen.height/2 - 105, Screen.width, 100), "Finish Level With 1 Star"))
 		{
 			Data.SaveData(levelIndex, true, 1);
@@ -36,6 +36,7 @@ public class FinishLevel : MonoBehaviour {
 	//What should we load depends on the OnFinish enum choice;
 	void LoadNextLevel()
 	{
-		Application.LoadLevel(nextLevelIndex);
+        SceneManager.LoadScene(nextLevelIndex);
+
 	}
 }

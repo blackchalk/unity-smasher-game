@@ -9,21 +9,20 @@ public class unpaused : MonoBehaviour {
 	public float secondTowait;
 	private Coroutine coroutine;
 	void Start () {
-		begin = false;
-
-
+		begin = true;
 	}
 	
 	// Update is called once per frame
-	void LateUpdate () {
-		if (this.gameObject.GetComponent<Image> ().sprite == spr) {
-			StartCoroutine (someSecondsMore(1f));
+	void Update () {
+        //TODO: handles countdown image
+		//if (this.gameObject.GetComponent<Image> ().sprite == spr) {
+		//	StartCoroutine (someSecondsMore(1f));
 		
-		} else {
-			StopCoroutine ("someSecondsMore");
-			begin = false;
+		//} else {
+		//	StopCoroutine ("someSecondsMore");
+		//	begin = false;
 
-		}
+		//}
 	}
 
 	private IEnumerator someSecondsMore(float waitTime){

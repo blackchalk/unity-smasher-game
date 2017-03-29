@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ManualLevelUnlock : MonoBehaviour {
 
@@ -83,7 +84,7 @@ public class ManualLevelUnlock : MonoBehaviour {
            // {
                 if (unlocked && LevelObject.bounds.Contains(touchPos) && touchTime < reactTime)
                 {
-                    Application.LoadLevel(LevelIndex);
+                    SceneManager.LoadScene(LevelIndex);
                     PlayerPrefsX.SetVector3("currentCamPos", cam.transform.position);
                 }
            // }

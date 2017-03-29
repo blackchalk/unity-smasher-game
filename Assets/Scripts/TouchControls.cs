@@ -28,13 +28,13 @@ public class TouchControls : MonoBehaviour {
 		mscTrigger = GameObject.Find("SoundManager").GetComponent<musicTriggers>();
 	}
 	void Update(){
-		mscTrigger = GameObject.Find("SoundManager").GetComponent<musicTriggers>();
+		//mscTrigger = GameObject.Find("SoundManager").GetComponent<musicTriggers>();
         if (Input.GetMouseButtonDown(0))
         {
             if (tapping)
             {
                 doubleTap = true;
-                Debug.Log("DoubleTap");
+                //Debug.Log("DoubleTap");
                 tapping = false;
             }
             else
@@ -51,7 +51,7 @@ public class TouchControls : MonoBehaviour {
             {
                 tapping = false;
                 singleTap = true;
-                Debug.Log("SingleTap");
+                //Debug.Log("SingleTap");
 
             }
 
@@ -61,11 +61,38 @@ public class TouchControls : MonoBehaviour {
 
     public void OnMouseOver()
     {
-            
+        if (Time.timeScale >= 1.0f) {
             if (Input.GetMouseButtonDown(0))
             {
-                if (singleTap && !gameObject.name.Contains("ggg"))
+                if (singleTap && !gameObject.name.Contains("ggg") && didHit == 0)
                 {
+
+                    if (gameObject.tag == "Right")
+                    {
+                        didHit = 1;
+                        mscTrigger.PlaySingle(sfxClip[0]);
+                        ScoreManager.AddPoints(pointsToAdd);
+                        this.gameObject.GetComponent<Animator>().enabled = false;
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+                        Counter.AddCounter(counterToAdd);
+                        StartCoroutine(doTransitionOfSprite());
+
+
+                    }
+                    else if (gameObject.tag == "Wrong")
+                    {
+                        didHit = 1;
+                        mscTrigger.PlaySingle(sfxClip[1]);
+                        ScoreManager.AddPoints(pointsToAdd);
+                        this.gameObject.GetComponent<Animator>().enabled = false;
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
+                        HeartAndStars.MinusHeartAndStars(toBeDeducted);
+                        StartCoroutine(doTransitionOfSprite());
+                    }
+                }
+                if (doubleTap && gameObject.name.Contains("ggg"))
+                {
+                    //Debug.Log("catch");
 
                     if (gameObject.tag == "Right")
                     {
@@ -88,32 +115,8 @@ public class TouchControls : MonoBehaviour {
                         StartCoroutine(doTransitionOfSprite());
                     }
                 }
-            if (doubleTap && gameObject.name.Contains("ggg")) {
-                Debug.Log("catch");
-
-                if (gameObject.tag == "Right")
-                {
-                    mscTrigger.PlaySingle(sfxClip[0]);
-                    ScoreManager.AddPoints(pointsToAdd);
-                    this.gameObject.GetComponent<Animator>().enabled = false;
-                    this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
-                    Counter.AddCounter(counterToAdd);
-                    StartCoroutine(doTransitionOfSprite());
-
-
-                }
-                else if (gameObject.tag == "Wrong")
-                {
-                    mscTrigger.PlaySingle(sfxClip[1]);
-                    ScoreManager.AddPoints(pointsToAdd);
-                    this.gameObject.GetComponent<Animator>().enabled = false;
-                    this.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
-                    HeartAndStars.MinusHeartAndStars(toBeDeducted);
-                    StartCoroutine(doTransitionOfSprite()); 
-                }
             }
-            
-            }
+           }
         
     }
 	IEnumerator doTransitionOfSprite(){

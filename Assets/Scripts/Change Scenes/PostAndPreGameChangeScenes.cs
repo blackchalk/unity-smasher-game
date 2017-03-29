@@ -27,6 +27,7 @@ public class PostAndPreGameChangeScenes : MonoBehaviour {
 	}
 	//dynamic scene change
 	public void Restart(string x){
+
 		SceneManager.LoadScene (x);
 	}
 
