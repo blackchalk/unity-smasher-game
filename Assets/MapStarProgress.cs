@@ -40,19 +40,19 @@ public class MapStarProgress : MonoBehaviour {
     void Update() {
         textStarCount.text = "" + PlayerPrefs.GetInt("totalStars");
 
-        if (gameNumbers.currentStarCount >= 18 && gameNumbers.currentStarCount < 21)
+        if (gameNumbers.currentStarCount >= 18 && gameNumbers.currentStarCount < 39)
         {
             textAchievement.text = "1";
         }
-        else if (gameNumbers.currentStarCount >= 21 && gameNumbers.currentStarCount < 24)
+        else if (gameNumbers.currentStarCount >= 39 && gameNumbers.currentStarCount < 63)
         {
             textAchievement.text = "2";
         }
-        else if (gameNumbers.currentStarCount >= 24 && gameNumbers.currentStarCount < 44)
+        else if (gameNumbers.currentStarCount >= 63 && gameNumbers.currentStarCount < 72)
         {
             textAchievement.text = "3";
         }
-        else if (gameNumbers.currentStarCount >= 44)
+        else if (gameNumbers.currentStarCount >= 72)
         {
             textAchievement.text = "4";
         }

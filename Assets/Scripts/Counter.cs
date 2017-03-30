@@ -19,6 +19,7 @@ public class Counter : MonoBehaviour {
 	public int finishWithStars;
     private int levelIndex;
     private musicTriggers mscTriggers;
+    private int targetCorrectMaxValues = 12;
 
     void Awake(){
 		finishWithStars = 0;
@@ -28,7 +29,16 @@ public class Counter : MonoBehaviour {
     }
 
 	void Start () {
-		CounterBar = GetComponent<Slider> ();
+
+        if (levelIndex == 21)
+        {
+            targetCorrectMaxValues = 8;
+        } else if (levelIndex == 12 || levelIndex == 13 || levelIndex == 16)
+        {
+            targetCorrectMaxValues = 10;
+        }
+
+        CounterBar = GetComponent<Slider> ();
 	}
 
 
@@ -37,7 +47,8 @@ public class Counter : MonoBehaviour {
 			CounterBar.value = OldCounter;
 			OldCounter = NewCounter;
 
-		if(OldCounter == 12 || OldCounter>=12){
+		if(OldCounter == targetCorrectMaxValues || OldCounter>= targetCorrectMaxValues)
+        {
 			NewCounter = 0;
 			LevelSuccess.SetActive (true);
 			Right.SetActive (false);

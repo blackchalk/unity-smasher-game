@@ -67,7 +67,7 @@ public class TouchControls : MonoBehaviour {
                 //if (singleTap && !gameObject.name.Contains("ggg") && didHit == 0)
                // {
 
-                    if (gameObject.tag == "Right")
+                    if (gameObject.tag == "Right" && didHit == 0)
                     {
                         didHit = 1;
                         mscTrigger.PlaySingle(sfxClip[0]);
@@ -79,7 +79,7 @@ public class TouchControls : MonoBehaviour {
 
 
                     }
-                    else if (gameObject.tag == "Wrong")
+                    else if (gameObject.tag == "Wrong" && didHit == 0)
                     {
                         didHit = 1;
                         mscTrigger.PlaySingle(sfxClip[1]);
