@@ -15,10 +15,10 @@ public class Level4Scene2Touch : MonoBehaviour {
     public float secondsToWait;
     public bool allowClick = false;
     public bool startingGame = true;
+	public Sprite answerTag;
 
 
     void Start(){
-        //secondsToWait = 3.0f;
         allowTouch = true;
 		mscTriggers = GameObject.Find ("SoundManager").GetComponent<musicTriggers> ();
         whackerPause = GameObject.Find("LevelManager").GetComponent<WhackerPause>();
@@ -29,7 +29,7 @@ public class Level4Scene2Touch : MonoBehaviour {
 		indexCount = lvl4scene2.counting;
 		mscTriggers = GameObject.Find("SoundManager").GetComponent<musicTriggers>();
 
-        // TODO: ONLY APPLY TO FIRST BAT
+        // MARK: ONLY APPLY TO FIRST BATCH
         if (secondsToWait > 0)
         {
             secondsToWait = secondsToWait - Time.deltaTime;
@@ -39,6 +39,10 @@ public class Level4Scene2Touch : MonoBehaviour {
         {
             allowClick = true;
         }
+
+		if (lvl4scene2.forceThemToChange==true && allowClick==true) {
+			this.gameObject.GetComponent<SpriteRenderer> ().sprite = answerTag;
+		}
     }
 
 	public void OnMouseOver()
@@ -50,28 +54,36 @@ public class Level4Scene2Touch : MonoBehaviour {
 
                 if (gameObject.tag == "True")
                 {
-                    mscTriggers.PlaySingle(sfxclip[0]); 
-                    ScoreManager.AddPoints(pointsToAdd);
-                    GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().timeBar.value = 7f;
-                    GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().counting += 1;
-                    lvl4scene2.changeQuestions(lvl4scene2.counting);
-                    lvl4scene2.changeUpperFrameQuestions(lvl4scene2.counting);
-                    //change question - sprites - animation
-                    //				SceneManager.LoadScene ("Level4Scene3");
-
+					mscTriggers.PlaySingle (sfxclip [0]);
+					ScoreManager.AddPoints (pointsToAdd);
+					lvl4scene2.forceThemToChange = true;
+					StartCoroutine(showIndicator (0.8f,true));
                 }
                 else if (gameObject.tag == "False")
                 {
-                    mscTriggers.PlaySingle(sfxclip[1]);
-                    ScoreManager.AddPoints(pointsToAdd);
-                    HeartAndStars.MinusHeartAndStars(toBeDeducted);
-                    GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().timeBar.value = 7f;
-                    GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().counting += 1;
-                    lvl4scene2.changeQuestions(lvl4scene2.counting);
-                    lvl4scene2.changeUpperFrameQuestions(lvl4scene2.counting);
-                    //				SceneManager.LoadScene ("Level4Scene3");
+					mscTriggers.PlaySingle(sfxclip[1]);
+					ScoreManager.AddPoints(pointsToAdd);
+					HeartAndStars.MinusHeartAndStars(toBeDeducted);
+					lvl4scene2.forceThemToChange = true;
+					StartCoroutine(showIndicator (0.8f,false));
                 }
             }
         }
+	}
+	IEnumerator showIndicator(float delay,bool tagToChange){
+
+		yield return new WaitForSeconds (delay);
+		lvl4scene2.forceThemToChange = false;
+		if (tagToChange == true) {
+
+			GameObject.Find ("Counter Slider").GetComponent<Level4Scene2> ().timeBar.value = 7f;
+			GameObject.Find ("Counter Slider").GetComponent<Level4Scene2> ().counting += 1;
+			StartCoroutine(lvl4scene2.waitShowIndicator(0.1f));
+		} else {
+			GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().timeBar.value = 7f;
+			GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().counting += 1;
+			StartCoroutine(lvl4scene2.waitShowIndicator(0.1f));
+		}
+
 	}
 }

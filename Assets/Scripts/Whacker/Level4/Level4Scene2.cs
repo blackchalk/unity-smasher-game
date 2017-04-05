@@ -14,8 +14,10 @@ public class Level4Scene2 : MonoBehaviour {
 	public GameObject UpperFrame;
 	public Sprite[] sprQuestions;
 	public bool gameEnd = false;
+	public bool forceThemToChange;
 
 	void Start(){
+		forceThemToChange = false;
 		UpperFrame = GameObject.Find ("Upper Frame");
 		timeBar = GetComponent<Slider> ();
 		timeBar.value = startingTime;
@@ -45,6 +47,9 @@ public class Level4Scene2 : MonoBehaviour {
 		}
 		if (counting >= 5) {
 			gameEnd = true;
+		}
+		if (forceThemToChange == true) {
+			StartCoroutine(waitShowIndicator (1f));
 		}
 	}
 	public void changeQuestions(int c){
@@ -105,6 +110,12 @@ public class Level4Scene2 : MonoBehaviour {
 		if (gameEnd == true) {
 			//do nothing
 		}
+	}
+	public IEnumerator waitShowIndicator(float waitTime){
+		yield return new WaitForSeconds (waitTime);
+		changeQuestions (counting);
+		changeUpperFrameQuestions (counting);
+	
 	}
 
 }
