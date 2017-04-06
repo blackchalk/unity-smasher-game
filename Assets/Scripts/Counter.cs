@@ -60,7 +60,7 @@ public class Counter : MonoBehaviour {
             //add up the stars to persistent data
             //save this to prefs
             StartCoroutine(gameNumbers.addstars(finishWithStars));
-            Data.SaveData(levelIndex, true, finishWithStars);
+            Data.SaveData(levelIndex, true, finishWithStars,ScoreManager.score);
             mscTriggers.PlaySingle(mscTriggers.audioClip[1]);
             LevelSuccess.GetComponent<Animator> ().enabled = true;
 

@@ -18,9 +18,9 @@ public class TouchControls : MonoBehaviour {
     public bool singleTap = false;
     public bool doubleTap = false;
 
-    bool tapping = false;
-    float tapTime = 0;
-    float duration = .4f;
+    //bool tapping = false;
+   // float tapTime = 0;
+    //float duration = .4f;
 
 
     void Start(){

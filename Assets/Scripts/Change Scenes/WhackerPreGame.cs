@@ -81,7 +81,7 @@ public class WhackerPreGame : MonoBehaviour {
         mscTriggers.PlaySingle(mscTriggers.audioClip[1]);
         finishWithStars = LevelSuccess.GetComponentInChildren<StarCountClass>().CountActive();
         StartCoroutine(gameNumbers.addstars(finishWithStars));
-        Data.SaveData(levelIndex, true, finishWithStars);
+        Data.SaveData(levelIndex, true, finishWithStars,ScoreManager.score);
         Questions.SetActive (false);
 		Slider.SetActive (false);
 		UpperFrame.SetActive (false);

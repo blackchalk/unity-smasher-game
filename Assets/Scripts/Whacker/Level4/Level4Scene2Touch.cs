@@ -11,7 +11,7 @@ public class Level4Scene2Touch : MonoBehaviour {
 	public int indexCount;
 	public AudioClip[] sfxclip;
 	private musicTriggers mscTriggers;
-    private WhackerPause whackerPause;
+    //private WhackerPause whackerPause;
     public float secondsToWait;
     public bool allowClick = false;
     public bool startingGame = true;
@@ -21,7 +21,7 @@ public class Level4Scene2Touch : MonoBehaviour {
     void Start(){
         allowTouch = true;
 		mscTriggers = GameObject.Find ("SoundManager").GetComponent<musicTriggers> ();
-        whackerPause = GameObject.Find("LevelManager").GetComponent<WhackerPause>();
+        //whackerPause = GameObject.Find("LevelManager").GetComponent<WhackerPause>();
         allowClick = false;
 	}
 

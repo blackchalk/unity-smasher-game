@@ -67,18 +67,18 @@ public class TouchCamera : MonoBehaviour {
 
 	Camera mainCamera;
 
-	private float topBound;
-	private float bottomBound;
+	//private float topBound;
+	//private float bottomBound;
 	private Vector3 pos;
-	private SpriteRenderer currentSprite;
-	private int mapIndex;
+	//private SpriteRenderer currentSprite;
+	//private int mapIndex;
 	void Awake () 
 	{
-		mapIndex = 0;
+		//mapIndex = 0;
 		mainCamera = Camera.main;
-		currentSprite = maps [mapIndex].GetComponent<SpriteRenderer> ();
-		bottomBound = currentSprite.sprite.bounds.size.y * -1;
-		topBound = currentSprite.sprite.bounds.size.y + currentSprite.gameObject.transform.position.y;
+		//currentSprite = maps [mapIndex].GetComponent<SpriteRenderer> ();
+		//bottomBound = currentSprite.sprite.bounds.size.y * -1;
+		//topBound = currentSprite.sprite.bounds.size.y + currentSprite.gameObject.transform.position.y;
 	}
 
 	void Update () 
