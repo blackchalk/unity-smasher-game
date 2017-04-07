@@ -15,7 +15,7 @@ public class Level4Scene2 : MonoBehaviour {
 	public Sprite[] sprQuestions;
 	public bool gameEnd = false;
 	public bool forceThemToChange;
-	private float countDownNumber;
+	public float countDownNumber;
 	public Text countDownText;
 
 	void Start(){
@@ -51,7 +51,7 @@ public class Level4Scene2 : MonoBehaviour {
 		if (countDownNumber > 0.0f) {
 			countDownNumber -= Time.deltaTime;
 			Debug.Log ("countdown"+countDownNumber);
-			countDownText.text = "" + countDownNumber;
+			countDownText.text = "" + (int)countDownNumber;
 		}
 		if (countDownNumber <= 0.0f) {
 			countDownNumber = startingTime;

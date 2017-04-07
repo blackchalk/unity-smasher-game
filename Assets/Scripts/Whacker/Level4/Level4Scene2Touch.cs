@@ -75,11 +75,12 @@ public class Level4Scene2Touch : MonoBehaviour {
 		yield return new WaitForSeconds (delay);
 		lvl4scene2.forceThemToChange = false;
 		if (tagToChange == true) {
-
+			GameObject.Find ("Counter Slider").GetComponent<Level4Scene2> ().countDownNumber = 7f;
 			GameObject.Find ("Counter Slider").GetComponent<Level4Scene2> ().timeBar.value = 7f;
 			GameObject.Find ("Counter Slider").GetComponent<Level4Scene2> ().counting += 1;
 			StartCoroutine(lvl4scene2.waitShowIndicator(0.1f));
 		} else {
+			GameObject.Find ("Counter Slider").GetComponent<Level4Scene2> ().countDownNumber = 7f;
 			GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().timeBar.value = 7f;
 			GameObject.Find("Counter Slider").GetComponent<Level4Scene2>().counting += 1;
 			StartCoroutine(lvl4scene2.waitShowIndicator(0.1f));
