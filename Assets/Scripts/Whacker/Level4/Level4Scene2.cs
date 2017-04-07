@@ -15,12 +15,15 @@ public class Level4Scene2 : MonoBehaviour {
 	public Sprite[] sprQuestions;
 	public bool gameEnd = false;
 	public bool forceThemToChange;
+	private float countDownNumber;
+	public Text countDownText;
 
 	void Start(){
 		forceThemToChange = false;
 		UpperFrame = GameObject.Find ("Upper Frame");
 		timeBar = GetComponent<Slider> ();
 		timeBar.value = startingTime;
+		countDownNumber = (float)startingTime;
 		questionObjects [counting].SetActive (true);
 		questionObjects [1].SetActive (false);
 		questionObjects [2].SetActive (false);
@@ -45,12 +48,23 @@ public class Level4Scene2 : MonoBehaviour {
 				//do nothing
 			}
 		}
+		if (countDownNumber > 0.0f) {
+			countDownNumber -= Time.deltaTime;
+			Debug.Log ("countdown"+countDownNumber);
+			countDownText.text = "" + countDownNumber;
+		}
+		if (countDownNumber == 0.0f) {
+			countDownNumber = startingTime;
+			Debug.Log ("countdown finish");
+		}
+		//
 		if (counting >= 5) {
 			gameEnd = true;
 		}
 		if (forceThemToChange == true) {
 			StartCoroutine(waitShowIndicator (1f));
 		}
+
 	}
 	public void changeQuestions(int c){
 		if (!gameEnd) {
