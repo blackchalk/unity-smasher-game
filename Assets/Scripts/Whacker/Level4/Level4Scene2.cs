@@ -53,7 +53,7 @@ public class Level4Scene2 : MonoBehaviour {
 			Debug.Log ("countdown"+countDownNumber);
 			countDownText.text = "" + countDownNumber;
 		}
-		if (countDownNumber == 0.0f) {
+		if (countDownNumber <= 0.0f) {
 			countDownNumber = startingTime;
 			Debug.Log ("countdown finish");
 		}
