@@ -20,7 +20,6 @@ public class handleClick : MonoBehaviour {
 		isToggleButton = true;
 		soundTriggers = GameObject.Find ("SoundManager").GetComponentInChildren<musicTriggers> ();
 		temp = textOnOff.name;
-		Debug.Log ("target.name:"+textOnOff);
 }
 
 	public void clickItem ()

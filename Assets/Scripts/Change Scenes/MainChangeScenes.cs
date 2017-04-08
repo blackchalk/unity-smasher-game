@@ -114,7 +114,8 @@ public class MainChangeScenes : MonoBehaviour {
 	}
 	public void goHome(){
 		SceneManager.LoadScene ("Main");
-	}
+
+    }
 
 	public void exitGame(){
 		Application.Quit ();
