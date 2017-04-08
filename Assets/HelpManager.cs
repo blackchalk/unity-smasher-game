@@ -8,7 +8,7 @@ public class HelpManager : MonoBehaviour {
 	public GameObject prevBtn;
 	public GameObject nextBtn;
 	public GameObject instructionHolderObj;
-	public Sprite[]	spr = new Sprite[9];
+    public Sprite[] spr;
 	public Sprite initialPage;
 	private Image currentSprite;
 	public int x;
@@ -20,8 +20,8 @@ public class HelpManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (x == 8) {
+	void Update () {    
+		if (x >= spr.Length-1) {
 			nextBtn.SetActive (false);
 		} else {
 			nextBtn.SetActive (true);
@@ -43,10 +43,12 @@ public class HelpManager : MonoBehaviour {
 	}
 
 	public void turnpageplus(int currentpage){
-
-			currentpage = currentpage + 1;
-			currentSprite.sprite = spr [currentpage];
-			x = currentpage;
+        if (currentpage <= spr.Length)
+        {
+            currentpage = currentpage + 1;
+            currentSprite.sprite = spr[currentpage];
+            x = currentpage;
+        }
 
 	}
 	public void turnpageminus(int currentpage){
