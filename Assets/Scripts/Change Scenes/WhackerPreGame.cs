@@ -26,9 +26,11 @@ public class WhackerPreGame : MonoBehaviour {
     public float secondsToWait = 5.0f;
     private GameNumbers gameNumbers;
     private musicTriggers mscTriggers;
+    private ScoreManager scoreManager;
     void Start(){
         mscTriggers = GameObject.Find("GameManager").GetComponentInChildren<musicTriggers>();
         gameNumbers = GameObject.Find("Gameplay").GetComponent<GameNumbers>();
+        scoreManager = LevelSuccess.GetComponentInChildren<ScoreManager>();
         levelIndex = SceneManager.GetActiveScene().buildIndex;
         finishWithStars = 0;
 		True.SetActive (false);
@@ -48,8 +50,13 @@ public class WhackerPreGame : MonoBehaviour {
 	void Update(){
         if (lvl4scene2.gameEnd == true) {
 			LevelFinish ();
-		}
-	}
+        }
+        //if (LevelSuccess.GetComponent<Animator>().enabled && lvl4scene2.gameEnd == true)
+        //{
+        //    StartCoroutine(executeScoring());
+        //}
+
+    }
 
 	public void Play(){
 		PregameFrame.SetActive (false);
@@ -81,6 +88,7 @@ public class WhackerPreGame : MonoBehaviour {
         mscTriggers.PlaySingle(mscTriggers.audioClip[1]);
         finishWithStars = LevelSuccess.GetComponentInChildren<StarCountClass>().CountActive();
         StartCoroutine(gameNumbers.addstars(finishWithStars));
+        scoreManager.manageHighScoreData();
         Data.SaveData(levelIndex, true, finishWithStars,ScoreManager.score);
         Questions.SetActive (false);
 		Slider.SetActive (false);
@@ -88,7 +96,7 @@ public class WhackerPreGame : MonoBehaviour {
 
 	}
 
-	public void NotesBack(){
+    public void NotesBack(){
 		PregameFrame.SetActive (true);
 		NotesFrame.SetActive (false);
 	}

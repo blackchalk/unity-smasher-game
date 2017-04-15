@@ -13,6 +13,7 @@ public class Destroyer : MonoBehaviour {
 		{
 			//Debug.Log ("hit correct :"+this.gameObject.name);
 			HeartAndStars.MinusHeartAndStars (objectHitDestroyer);
+            ScoreManager.MinusPoints();
 			Destroy (col.gameObject);
 		} 
 		else if (col.gameObject.tag == "Wrong") 

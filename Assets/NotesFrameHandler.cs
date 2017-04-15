@@ -15,9 +15,4 @@ public class NotesFrameHandler : MonoBehaviour {
         counting = lvl4scene2.counting;
         this.gameObject.GetComponent<Image>().sprite = notesSpr[counting];
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

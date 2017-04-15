@@ -10,6 +10,8 @@ public class GameNumbers : MonoBehaviour {
     private int levelIndex;
     // Use this for initialization
     void Start () {
+        //delete all prefs
+        //PlayerPrefs.DeleteAll();
         levelIndex = SceneManager.GetActiveScene().buildIndex;
         currentStarCount = PlayerPrefs.GetInt ("totalStars");
 		isFirstTime = PlayerPrefs.GetInt ("isFirstTime");

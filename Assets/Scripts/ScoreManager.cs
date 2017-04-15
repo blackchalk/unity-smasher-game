@@ -9,7 +9,8 @@ public class ScoreManager : MonoBehaviour {
 	public Text highScoreText;
 	public int hiScoreCount;
     private int levelIndex;
-    void Start () {
+    void Start () { 
+       
         levelIndex = SceneManager.GetActiveScene().buildIndex;
         text = GetComponent<Text> ();//score
 		score = 0;
@@ -21,9 +22,9 @@ public class ScoreManager : MonoBehaviour {
 			score = 0;
 			text.text = "" + score;//score
 
-			if (score > hiScoreCount) {
-				hiScoreCount = score;
-			}
+			//if (score > hiScoreCount) {
+			//	hiScoreCount = score;
+			//}
 
 		highScoreText.text = "" + hiScoreCount;
 
@@ -34,7 +35,19 @@ public class ScoreManager : MonoBehaviour {
 	{
 		score += pointsToAdd;
 	}
-    
 
+    public static void MinusPoints()
+    {
+        score += -20;
+    }
+    public void manageHighScoreData() {
+        if (score > hiScoreCount)
+        {
+            hiScoreCount = score;
+        }
+
+        highScoreText.text = "" + hiScoreCount;
+
+    }
 
 }

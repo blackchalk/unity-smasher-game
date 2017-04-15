@@ -19,17 +19,21 @@ public class Counter : MonoBehaviour {
 	public int finishWithStars;
     private int levelIndex;
     private musicTriggers mscTriggers;
-    private int targetCorrectMaxValues = 12;
+    public int targetCorrectMaxValues = 12;
+    private ScoreManager scoreManager;
+    //private bool isFinish;
 
     void Awake(){
+
 		finishWithStars = 0;
         mscTriggers = GameObject.Find("GameManager").GetComponentInChildren<musicTriggers>();
         gameNumbers = GameObject.Find ("Gameplay").GetComponent<GameNumbers>();
         levelIndex = SceneManager.GetActiveScene().buildIndex;
+        scoreManager = LevelSuccess.GetComponentInChildren<ScoreManager>();
     }
 
 	void Start () {
-
+        //isFinish = false;
         if (levelIndex == 21)
         {
             targetCorrectMaxValues = 8;
@@ -39,6 +43,7 @@ public class Counter : MonoBehaviour {
         }
 
         CounterBar = GetComponent<Slider> ();
+        CounterBar.maxValue = targetCorrectMaxValues;
 	}
 
 
@@ -60,12 +65,12 @@ public class Counter : MonoBehaviour {
             //add up the stars to persistent data
             //save this to prefs
             StartCoroutine(gameNumbers.addstars(finishWithStars));
+            scoreManager.manageHighScoreData();
             Data.SaveData(levelIndex, true, finishWithStars,ScoreManager.score);
             mscTriggers.PlaySingle(mscTriggers.audioClip[1]);
             LevelSuccess.GetComponent<Animator> ().enabled = true;
-
+            //isFinish = true;
 		}
-
 	}
 
 	public static void AddCounter(int counterToAdd)
